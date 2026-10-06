@@ -7,7 +7,9 @@ CREATE TABLE IF NOT EXISTS  staff (
 
 CREATE TABLE IF NOT EXISTS admin (
 admin_id BIGINT PRIMARY KEY REFERENCES staff(user_id) ON DELETE CASCADE,
-name VARCHAR(255)
+name VARCHAR(255),
+phone_number varchar,
+email varchar
 );
 
 CREATE TABLE IF NOT EXISTS  doctor (
@@ -22,23 +24,25 @@ CREATE TABLE IF NOT EXISTS  doctor (
 CREATE TABLE IF NOT EXISTS  patient (
    patient_id bigint PRIMARY KEY Generated always as identity,
    name varchar,
-   phone_number varchar
+   phone_number varchar,
+    email varchar
 );
 
 CREATE TABLE IF NOT EXISTS  receptionist (
    receptionist_id bigint PRIMARY KEY REFERENCES staff(user_id) ON DELETE CASCADE,
    name varchar NOT NULL ,
-    phone_number varchar(20)
+    phone_number varchar(20),
+    email varchar
 );
 
 CREATE TABLE IF NOT EXISTS appointments (
    id bigint PRIMARY KEY Generated always as identity,
-   patient_id bigint references patient(patient_id),
-   doctor_id bigint references doctor(doctor_id),
+   patient_id bigint references patient(patient_id) on delete cascade ,
+   doctor_id bigint references doctor(doctor_id) on  delete cascade ,
    appointment_time TIMESTAMP WITH TIME ZONE NOT NULL,
    remarks text,
    status varchar(50) not null default 'SCHEDULED' check ( status IN ('SCHEDULED', 'COMPLETED', 'CANCELLED', 'NO_SHOW')) ,
-   created_by bigint references  staff (user_id),
+   created_by bigint references  staff (user_id) on delete cascade ,
    created_at timestamp with time zone default current_timestamp,
    updated_at timestamp with time zone default current_timestamp
 );
