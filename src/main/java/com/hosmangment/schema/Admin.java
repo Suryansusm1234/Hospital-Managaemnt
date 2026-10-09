@@ -13,10 +13,10 @@ import org.hibernate.annotations.OnDeleteAction;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Admin extends BaseEntity{
+public class Admin{
     @Id
     @Column(name = "admin_id")
-    private Long doctor_id;
+    private Long admin_id;
     @OneToOne
     @MapsId
     @JoinColumn(name = "admin_id")

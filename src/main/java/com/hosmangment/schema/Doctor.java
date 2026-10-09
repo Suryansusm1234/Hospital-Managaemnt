@@ -12,7 +12,7 @@ import org.hibernate.annotations.OnDeleteAction;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Doctor extends BaseEntity{
+public class Doctor {
     @Id
     @Column(name = "doctor_id")
     private Long doctor_id;

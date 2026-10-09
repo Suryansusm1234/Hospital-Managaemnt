@@ -10,7 +10,7 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Receptionist extends BaseEntity{
+public class Receptionist {
     @Id
     @Column(name = "receptionist_id")
     private Long receptionist_id;

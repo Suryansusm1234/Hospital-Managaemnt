@@ -11,7 +11,7 @@ import lombok.*;
 @AllArgsConstructor
 @Getter
 @Setter
-public class Staff {
+public class Staff  {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long user_id;
@@ -20,6 +20,12 @@ public class Staff {
     @Column(name = "username" , unique = true)
     private String username ;
     private String password;
+    @Column(nullable = false)
+    private String name;
+    @Column(name = "phone_number")
+    private String phoneNo;
+    @Column(unique = true)
+    private String email;
     @OneToOne(mappedBy = "staff", cascade = CascadeType.ALL, orphanRemoval = true)
     private Doctor doctor;
     @OneToOne(mappedBy = "staff", cascade = CascadeType.ALL, orphanRemoval = true)
