@@ -2,6 +2,7 @@ package com.hosmangment.controller;
 
 import com.hosmangment.dto.request.CreateDoctorDto;
 import com.hosmangment.dto.response.CreatedDoctorDto;
+import com.hosmangment.dto.response.DoctorsResponseDto;
 import com.hosmangment.dto.response.GetStaffDto;
 import com.hosmangment.schema.Doctor;
 import com.hosmangment.schema.Role;
@@ -101,7 +102,7 @@ public class StaffControllerTest {
                 .email("trial@gmail.com")
                 .username("dr_house")
                 .role(Role.Doctor)
-                .doctor(Doctor.builder().designation("democratisation").isAvailable(true).build())
+                .doctor(DoctorsResponseDto.builder().isAvailable(true).designation("Diagnostician").build())
                 .build();
 
         when(staffService.getStaffById(eq(staffId))).thenReturn(mockResponse);
