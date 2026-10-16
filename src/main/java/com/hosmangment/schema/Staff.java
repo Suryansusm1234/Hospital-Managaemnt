@@ -2,6 +2,9 @@ package com.hosmangment.schema;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.DialectOverride;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.SQLRestriction;
 
 @Entity
 @Data
@@ -11,10 +14,13 @@ import lombok.*;
 @AllArgsConstructor
 @Getter
 @Setter
+@SQLDelete(sql = "UPDATE staff SET is_deleted = true WHERE staff_id =?")
+@SQLRestriction("is_deleted = false")
 public class Staff  {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long user_id;
+    @Column(name = "user_id")
+    private Long staff_id;
     @Enumerated(EnumType.STRING)
     private Role role;
     @Column(name = "username" , unique = true)
@@ -32,4 +38,6 @@ public class Staff  {
     private Admin admin;
     @OneToOne(mappedBy = "staff", cascade = CascadeType.ALL, orphanRemoval = true)
     private Receptionist receptionist;
+    @Column(name = "is_deleted", nullable = false)
+    private boolean isDeleted = false;
 }
