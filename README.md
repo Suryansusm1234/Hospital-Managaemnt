@@ -63,7 +63,7 @@ Prerequisites
 1. Clone the Repository
 Bash
 
-git clone https://github.com/your-username/hospital-management-system.git
+git clone [https://github.com/your-username/hospital-management-system.git](https://github.com/Suryansusm1234/Hospital-Managaemnt.git)
 cd hospital-management-system
 
 2. Configure Database & Environment
@@ -80,7 +80,6 @@ spring.jpa.show-sql=true
 
 # JWT Secret & Expiration
 jwt.secret=your_jwt_secret_key_here
-jwt.expiration=86400000
 
 3. Run the Application
 Bash
