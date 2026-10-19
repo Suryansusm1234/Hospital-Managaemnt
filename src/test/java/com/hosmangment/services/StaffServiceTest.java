@@ -64,7 +64,7 @@ public class StaffServiceTest {
         );
 
         Staff createdStaff = Staff.builder()
-                .staff_id(1L)
+                .staffId(1L)
                 .username(req.username())
                 .password("hashedPwd")
                 .role(Role.Doctor)
@@ -103,7 +103,7 @@ public class StaffServiceTest {
     void shouldGetStaffByIdSuccessfullyWhenRoleIsDoctor() {
         Doctor trial = Doctor.builder().isAvailable(true).designation("Diagnostician").build();
         Staff staff = Staff.builder()
-                .staff_id(1L)
+                .staffId(1L)
                 .username("dr_house")
                 .role(Role.Doctor)
                 .name("Dr. Gregory House")
@@ -149,7 +149,7 @@ public class StaffServiceTest {
     @Test
     void shouldGetAllStaffSuccessfully() {
         Staff staff1 = Staff.builder()
-                .staff_id(1L)
+                .staffId(1L)
                 .username("dr_house")
                 .role(Role.Doctor)
                 .name("Dr. House")
@@ -158,7 +158,7 @@ public class StaffServiceTest {
                 .build();
 
         Staff staff2 = Staff.builder()
-                .staff_id(2L)
+                .staffId(2L)
                 .username("recept1")
                 .role(Role.Receptionist)
                 .name("Receptionist One")
@@ -181,7 +181,7 @@ public class StaffServiceTest {
     @Test
     void shouldDeleteStaffSuccessfully() {
         Staff staff = Staff.builder()
-                .staff_id(1L)
+                .staffId(1L)
                 .username("dr_house")
                 .role(Role.Doctor)
                 .name("Dr. House")

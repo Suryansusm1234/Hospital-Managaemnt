@@ -32,10 +32,10 @@ public class Appointments {
     private Doctor doctor;
     @Column(name = "appointment_time", nullable = false)
     private OffsetDateTime appointmentTime;
-    private String remarks;
-    @Column(name = "status", nullable = false)
+    private String remarks = null;
+    @Column(name = "status", nullable = false )
     @Enumerated(EnumType.STRING)
-    private Status status;
+    private Status status =Status.SCHEDULED;
      @ManyToOne
     @JoinColumn(name = "created_by")
     @OnDelete(action = OnDeleteAction.CASCADE)

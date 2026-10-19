@@ -53,10 +53,10 @@ public class AppointmentServiceTest {
     void shouldBookAppointmentSuccessfully() {
         CreateAppointementDto req = new CreateAppointementDto(10L, 20L, OffsetDateTime.now().plusDays(1), 30L);
 
-        Patient patient = Patient.builder().patient_id(10L).name("John Doe").build();
-        Staff doctorStaff = Staff.builder().staff_id(20L).name("Dr. House").role(Role.Doctor).build();
+        Patient patient = Patient.builder().patientId(10L).name("John Doe").build();
+        Staff doctorStaff = Staff.builder().staffId(20L).name("Dr. House").role(Role.Doctor).build();
         Doctor doctor = Doctor.builder().doctor_id(20L).staff(doctorStaff).isAvailable(true).designation("Diagnostician").build();
-        Staff creator = Staff.builder().staff_id(30L).name("Receptionist").role(Role.Receptionist).build();
+        Staff creator = Staff.builder().staffId(30L).name("Receptionist").role(Role.Receptionist).build();
 
         Appointments savedAppointment = Appointments.builder()
                 .id(1L)
@@ -101,7 +101,7 @@ public class AppointmentServiceTest {
 
     @Test
     void shouldThrowWhenDoctorNotFoundForBooking() {
-        Patient patient = Patient.builder().patient_id(10L).build();
+        Patient patient = Patient.builder().patientId(10L).build();
         CreateAppointementDto req = new CreateAppointementDto(10L, 20L, OffsetDateTime.now().plusDays(1), 30L);
         when(patientRepo.findById(10L)).thenReturn(Optional.of(patient));
         when(doctorRepo.findById(20L)).thenReturn(Optional.empty());
@@ -114,7 +114,7 @@ public class AppointmentServiceTest {
 
     @Test
     void shouldThrowWhenDoctorNotAvailableForBooking() {
-        Patient patient = Patient.builder().patient_id(10L).build();
+        Patient patient = Patient.builder().patientId(10L).build();
         Doctor doctor = Doctor.builder().doctor_id(20L).isAvailable(false).build();
         CreateAppointementDto req = new CreateAppointementDto(10L, 20L, OffsetDateTime.now().plusDays(1), 30L);
         when(patientRepo.findById(10L)).thenReturn(Optional.of(patient));
@@ -128,7 +128,7 @@ public class AppointmentServiceTest {
 
     @Test
     void shouldThrowWhenTimeSlotConflictsForBooking() {
-        Patient patient = Patient.builder().patient_id(10L).build();
+        Patient patient = Patient.builder().patientId(10L).build();
         Doctor doctor = Doctor.builder().doctor_id(20L).isAvailable(true).build();
         CreateAppointementDto req = new CreateAppointementDto(10L, 20L, OffsetDateTime.now().plusDays(1), 30L);
         when(patientRepo.findById(10L)).thenReturn(Optional.of(patient));
@@ -143,7 +143,7 @@ public class AppointmentServiceTest {
 
     @Test
     void shouldThrowWhenCreatorNotFoundForBooking() {
-        Patient patient = Patient.builder().patient_id(10L).build();
+        Patient patient = Patient.builder().patientId(10L).build();
         Doctor doctor = Doctor.builder().doctor_id(20L).isAvailable(true).build();
         CreateAppointementDto req = new CreateAppointementDto(10L, 20L, OffsetDateTime.now().plusDays(1), 30L);
         when(patientRepo.findById(10L)).thenReturn(Optional.of(patient));
@@ -159,10 +159,10 @@ public class AppointmentServiceTest {
 
     @Test
     void shouldGetAllAppointmentsSuccessfully() {
-        Patient patient = Patient.builder().patient_id(10L).name("John").build();
-        Staff doctorStaff = Staff.builder().staff_id(20L).name("Dr. House").build();
+        Patient patient = Patient.builder().patientId(10L).name("John").build();
+        Staff doctorStaff = Staff.builder().staffId(20L).name("Dr. House").build();
         Doctor doctor = Doctor.builder().doctor_id(20L).staff(doctorStaff).designation("Diag").build();
-        Staff creator = Staff.builder().staff_id(30L).name("Rec").role(Role.Receptionist).build();
+        Staff creator = Staff.builder().staffId(30L).name("Rec").role(Role.Receptionist).build();
         Appointments appt = Appointments.builder().id(1L).patient(patient).doctor(doctor).staff(creator).appointmentTime(OffsetDateTime.now()).status(Status.SCHEDULED).build();
 
         Page<Appointments> page = new PageImpl<>(List.of(appt), PageRequest.of(0, 10), 1);
@@ -177,10 +177,10 @@ public class AppointmentServiceTest {
 
     @Test
     void shouldGetAppointmentByIdSuccessfully() {
-        Patient patient = Patient.builder().patient_id(10L).name("John").build();
-        Staff doctorStaff = Staff.builder().staff_id(20L).name("Dr. House").build();
+        Patient patient = Patient.builder().patientId(10L).name("John").build();
+        Staff doctorStaff = Staff.builder().staffId(20L).name("Dr. House").build();
         Doctor doctor = Doctor.builder().doctor_id(20L).staff(doctorStaff).designation("Diag").build();
-        Staff creator = Staff.builder().staff_id(30L).name("Rec").role(Role.Receptionist).build();
+        Staff creator = Staff.builder().staffId(30L).name("Rec").role(Role.Receptionist).build();
         Appointments appt = Appointments.builder().id(1L).patient(patient).doctor(doctor).staff(creator).appointmentTime(OffsetDateTime.now()).status(Status.SCHEDULED).build();
 
         when(appointmentRepo.findById(1L)).thenReturn(Optional.of(appt));
@@ -205,10 +205,10 @@ public class AppointmentServiceTest {
 
     @Test
     void shouldChangeAppointmentStatusSuccessfully() {
-        Patient patient = Patient.builder().patient_id(10L).build();
-        Staff doctorStaff = Staff.builder().staff_id(20L).name("Dr.").build();
+        Patient patient = Patient.builder().patientId(10L).build();
+        Staff doctorStaff = Staff.builder().staffId(20L).name("Dr.").build();
         Doctor doctor = Doctor.builder().doctor_id(20L).staff(doctorStaff).build();
-        Staff creator = Staff.builder().staff_id(30L).build();
+        Staff creator = Staff.builder().staffId(30L).build();
         Appointments appt = Appointments.builder().id(1L).patient(patient).doctor(doctor).staff(creator).status(Status.SCHEDULED).appointmentTime(OffsetDateTime.now()).build();
 
         UpdateAppointmentStatusRequest req = new UpdateAppointmentStatusRequest("COMPLETED");
@@ -236,10 +236,10 @@ public class AppointmentServiceTest {
 
     @Test
     void shouldUpdateAppointmentSuccessfully() {
-        Patient patient = Patient.builder().patient_id(10L).build();
-        Staff doctorStaff = Staff.builder().staff_id(20L).name("Dr.").build();
+        Patient patient = Patient.builder().patientId(10L).build();
+        Staff doctorStaff = Staff.builder().staffId(20L).name("Dr.").build();
         Doctor doctor = Doctor.builder().doctor_id(20L).staff(doctorStaff).isAvailable(true).build();
-        Staff creator = Staff.builder().staff_id(30L).build();
+        Staff creator = Staff.builder().staffId(30L).build();
         Appointments appt = Appointments.builder().id(1L).patient(patient).doctor(doctor).staff(creator).status(Status.SCHEDULED).appointmentTime(OffsetDateTime.now().plusDays(1)).remarks("old").build();
 
         UpdateAppointementDto req = new UpdateAppointementDto(20L, OffsetDateTime.now().plusDays(2), "updated");
@@ -270,10 +270,10 @@ public class AppointmentServiceTest {
 
     @Test
     void shouldThrowWhenNewDoctorNotFoundOnUpdate() {
-        Patient patient = Patient.builder().patient_id(10L).build();
-        Staff doctorStaff = Staff.builder().staff_id(20L).name("Dr.").build();
+        Patient patient = Patient.builder().patientId(10L).build();
+        Staff doctorStaff = Staff.builder().staffId(20L).name("Dr.").build();
         Doctor doctor = Doctor.builder().doctor_id(20L).staff(doctorStaff).isAvailable(true).build();
-        Staff creator = Staff.builder().staff_id(30L).build();
+        Staff creator = Staff.builder().staffId(30L).build();
         Appointments appt = Appointments.builder().id(1L).patient(patient).doctor(doctor).staff(creator).appointmentTime(OffsetDateTime.now().plusDays(1)).build();
 
         UpdateAppointementDto req = new UpdateAppointementDto(25L, null, null);
@@ -289,12 +289,12 @@ public class AppointmentServiceTest {
 
     @Test
     void shouldThrowWhenNewDoctorNotAvailableOnUpdate() {
-        Patient patient = Patient.builder().patient_id(10L).build();
-        Staff doctorStaff = Staff.builder().staff_id(20L).name("Dr.").build();
+        Patient patient = Patient.builder().patientId(10L).build();
+        Staff doctorStaff = Staff.builder().staffId(20L).name("Dr.").build();
         Doctor doctor = Doctor.builder().doctor_id(20L).staff(doctorStaff).isAvailable(true).build();
-        Staff newDoctorStaff = Staff.builder().staff_id(25L).name("Dr.2").build();
+        Staff newDoctorStaff = Staff.builder().staffId(25L).name("Dr.2").build();
         Doctor newDoctor = Doctor.builder().doctor_id(25L).staff(newDoctorStaff).isAvailable(false).build();
-        Staff creator = Staff.builder().staff_id(30L).build();
+        Staff creator = Staff.builder().staffId(30L).build();
         Appointments appt = Appointments.builder().id(1L).patient(patient).doctor(doctor).staff(creator).appointmentTime(OffsetDateTime.now().plusDays(1)).build();
 
         UpdateAppointementDto req = new UpdateAppointementDto(25L, null, null);
@@ -310,10 +310,10 @@ public class AppointmentServiceTest {
 
     @Test
     void shouldThrowWhenConflictOnUpdate() {
-        Patient patient = Patient.builder().patient_id(10L).build();
-        Staff doctorStaff = Staff.builder().staff_id(20L).name("Dr.").build();
+        Patient patient = Patient.builder().patientId(10L).build();
+        Staff doctorStaff = Staff.builder().staffId(20L).name("Dr.").build();
         Doctor doctor = Doctor.builder().doctor_id(20L).staff(doctorStaff).isAvailable(true).build();
-        Staff creator = Staff.builder().staff_id(30L).build();
+        Staff creator = Staff.builder().staffId(30L).build();
         OffsetDateTime newTime = OffsetDateTime.now().plusDays(2);
         Appointments appt = Appointments.builder().id(1L).patient(patient).doctor(doctor).staff(creator).appointmentTime(OffsetDateTime.now().plusDays(1)).build();
 
@@ -331,10 +331,10 @@ public class AppointmentServiceTest {
 
     @Test
     void shouldGetUpcomingAppointmentsForDoctorSuccessfully() {
-        Patient patient = Patient.builder().patient_id(10L).build();
-        Staff doctorStaff = Staff.builder().staff_id(20L).name("Dr.").build();
+        Patient patient = Patient.builder().patientId(10L).build();
+        Staff doctorStaff = Staff.builder().staffId(20L).name("Dr.").build();
         Doctor doctor = Doctor.builder().doctor_id(20L).staff(doctorStaff).build();
-        Staff creator = Staff.builder().staff_id(30L).build();
+        Staff creator = Staff.builder().staffId(30L).build();
         Appointments appt = Appointments.builder().id(1L).patient(patient).doctor(doctor).staff(creator).appointmentTime(OffsetDateTime.now().plusDays(1)).status(Status.SCHEDULED).build();
 
         when(doctorRepo.existsById(20L)).thenReturn(true);
@@ -361,10 +361,10 @@ public class AppointmentServiceTest {
 
     @Test
     void shouldGetPatientAppointmentHistorySuccessfully() {
-        Patient patient = Patient.builder().patient_id(10L).build();
-        Staff doctorStaff = Staff.builder().staff_id(20L).name("Dr.").role(Role.Doctor).build();
+        Patient patient = Patient.builder().patientId(10L).build();
+        Staff doctorStaff = Staff.builder().staffId(20L).name("Dr.").role(Role.Doctor).build();
         Doctor doctor = Doctor.builder().doctor_id(20L).staff(doctorStaff).build();
-        Staff creator = Staff.builder().staff_id(30L).role(Role.Doctor).build();
+        Staff creator = Staff.builder().staffId(30L).role(Role.Doctor).build();
         Appointments appt = Appointments.builder().id(1L).patient(patient).doctor(doctor).staff(creator).appointmentTime(OffsetDateTime.now().minusDays(1)).status(Status.COMPLETED).build();
 
         when(patientRepo.existsById(10L)).thenReturn(true);

@@ -13,13 +13,13 @@ import org.hibernate.annotations.SQLRestriction;
 @AllArgsConstructor
 @Getter
 @Setter
-@SQLDelete(sql = "UPDATE staff SET is_deleted = true WHERE staff_id =?")
+@SQLDelete(sql = "UPDATE staff SET is_deleted = true WHERE user_id =?")
 @SQLRestriction("is_deleted = false")
 public class Staff  {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
-    private Long staff_id;
+    private Long staffId;
     @Enumerated(EnumType.STRING)
     private Role role;
     @Column(name = "username" , unique = true)

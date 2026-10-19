@@ -48,7 +48,7 @@ public class PatientServiceTest {
         );
 
         Patient savedPatient = Patient.builder()
-                .patient_id(1L)
+                .patientId(1L)
                 .name(req.name())
                 .email(req.email())
                 .phoneNo(req.phone_no())
@@ -75,7 +75,7 @@ public class PatientServiceTest {
     @Test
     void shouldFindPatientsByNameSuccessfully() {
         Patient patient = Patient.builder()
-                .patient_id(1L)
+                .patientId(1L)
                 .name("John Doe")
                 .email("john@example.com")
                 .phoneNo("9876543210")
@@ -111,7 +111,7 @@ public class PatientServiceTest {
     @Test
     void shouldFindPatientByIdSuccessfully() {
         Patient patient = Patient.builder()
-                .patient_id(1L)
+                .patientId(1L)
                 .name("John Doe")
                 .email("john@example.com")
                 .phoneNo("9876543210")
@@ -156,7 +156,7 @@ public class PatientServiceTest {
         );
 
         Patient existingPatient = Patient.builder()
-                .patient_id(1L)
+                .patientId(1L)
                 .name("John Doe")
                 .email("john@example.com")
                 .phoneNo("9876543210")
@@ -190,7 +190,7 @@ public class PatientServiceTest {
         );
 
         Patient existingPatient = Patient.builder()
-                .patient_id(1L)
+                .patientId(1L)
                 .name("John Doe")
                 .email("john@example.com")
                 .phoneNo("9876543210")
@@ -222,7 +222,7 @@ public class PatientServiceTest {
         );
 
         Patient existingPatient = Patient.builder()
-                .patient_id(1L)
+                .patientId(1L)
                 .name("John Doe")
                 .email("john@example.com")
                 .phoneNo("9876543210")

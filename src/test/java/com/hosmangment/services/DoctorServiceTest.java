@@ -34,7 +34,7 @@ public class DoctorServiceTest {
     @Test
     void shouldCreateDoctorSuccessfully() {
         Staff staff = Staff.builder()
-                .staff_id(1L)
+                .staffId(1L)
                 .username("dr_house")
                 .password("hashedPwd")
                 .role(Role.Doctor)
@@ -71,7 +71,7 @@ public class DoctorServiceTest {
     @Test
     void shouldFindDoctorByIdSuccessfully() {
         Staff staff = Staff.builder()
-                .staff_id(1L)
+                .staffId(1L)
                 .username("dr_house")
                 .role(Role.Doctor)
                 .name("Dr. Gregory House")
@@ -115,7 +115,7 @@ public class DoctorServiceTest {
     @Test
     void shouldGetAllDoctorsSuccessfully() {
         Staff staff1 = Staff.builder()
-                .staff_id(1L)
+                .staffId(1L)
                 .username("dr_house")
                 .role(Role.Doctor)
                 .name("Dr. Gregory House")
@@ -124,7 +124,7 @@ public class DoctorServiceTest {
                 .build();
 
         Staff staff2 = Staff.builder()
-                .staff_id(2L)
+                .staffId(2L)
                 .username("dr_wilson")
                 .role(Role.Doctor)
                 .name("Dr. James Wilson")
@@ -188,7 +188,7 @@ public class DoctorServiceTest {
     @Test
     void shouldToggleAvailabilityFromTrueToFalse() {
         Staff staff = Staff.builder()
-                .staff_id(1L)
+                .staffId(1L)
                 .username("dr_house")
                 .role(Role.Doctor)
                 .name("Dr. Gregory House")
@@ -221,7 +221,7 @@ public class DoctorServiceTest {
     @Test
     void shouldToggleAvailabilityFromFalseToTrue() {
         Staff staff = Staff.builder()
-                .staff_id(1L)
+                .staffId(1L)
                 .username("dr_house")
                 .role(Role.Doctor)
                 .name("Dr. Gregory House")
