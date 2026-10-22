@@ -1,4 +1,4 @@
-FROM eclipse-temurin:21-jdk-noble
+FROM eclipse-temurin:21-jdk-noble AS build
 WORKDIR /hospital-project
 COPY gradlew gradlew
 COPY gradle gradle
@@ -12,7 +12,5 @@ FROM eclipse-temurin:21-jre-noble
 LABEL authors="suryansu"
 WORKDIR /app
 COPY --from=build /app/build/libs/*.jar app.jar
-
 EXPOSE 8080
-
 ENTRYPOINT ["java", "-jar", "app.jar"]
